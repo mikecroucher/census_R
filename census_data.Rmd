@@ -1,0 +1,39 @@
+---
+title: "Playing with election data"
+output: html_notebook
+---
+
+The British Election Study data is at http://www.britishelectionstudy.com/data-objects/cross-sectional-data/
+
+The first thing you need to do is find the web address of the file you want to download. For example, the STATA file for the 2010 BES Cross-Section is at http://www.britishelectionstudy.com/custom/uploads/2014/04/2010BESprepost.dta. 
+
+We can use R to download it to our machine as follows:
+```{r}
+download.file('http://www.britishelectionstudy.com/custom/uploads/2014/04/2010BESprepost.dta',destfile='2010BESprepost.dta')
+```
+
+# SPSSS or SAS files
+
+BES data can be obtained as either SPSS or Stata data. So, which should we choose? I've chosen Stata since the functin that loads SPSS data is very old. According to https://stat.ethz.ch/R-manual/R-devel/library/foreign/html/read.spss.html it was written in 2000. As such, it does not include modern updates to the file format.
+
+We now need to load it into R. We do this using a package called **foreign** (full details at https://cran.r-project.org/web/packages/foreign/index.html). 
+
+Before you can use a package, you need to install it. You should only ever need to do this once on your machine -- unless you change your version of R.
+
+```{r}
+install.packages('foreign')
+```
+In future, all you need to do is load the package into your R session with the **library** command.
+
+```{r}
+library(foreign)
+
+dataset = read.dta('2010BESprepost.dta', convert.factors = FALSE)
+```
+
+```{r}
+
+```
+
+
+
